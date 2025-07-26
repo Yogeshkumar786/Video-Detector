@@ -2,16 +2,16 @@ services:
   - type: web
     name: video-deepfake-api
     env: python
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port 10000
-    plan: free
     envVars:
       - key: API_KEY
-        sync: false
+        sync: false  # You’ll set it manually in Render dashboard
       - key: PYTHONUNBUFFERED
-        value: 1
+        value: "1"
       - key: PYTHONPATH
-        value: .
+        value: "."
     healthCheckPath: /health
     disk:
       name: uploads
